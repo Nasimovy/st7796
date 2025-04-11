@@ -114,7 +114,7 @@ class ST7796Spi : public OLEDDisplay {
 
   public:
     /* pass _cs as -1 to indicate "do not use CS pin", for cases where it is hard wired low */
-    ST7789Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=480,uint16_t height=135,int mosi=-1,int miso=-1,int clk=-1) {
+    ST7796Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=480,uint16_t height=320,int mosi=-1,int miso=-1,int clk=-1) {
       this->_spi = spiClass;
       this->_rst = _rst;
       this->_dc  = _dc;
