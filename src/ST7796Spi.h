@@ -28,8 +28,8 @@
  *
  */
 
-#ifndef ST7789Spi_h
-#define ST7789Spi_h
+#ifndef ST7796Spi_h
+#define ST7796Spi_h
 
 #include "OLEDDisplay.h"
 #include <SPI.h>
@@ -93,7 +93,7 @@
 #define rtos_malloc malloc
 //SPIClass SPI1(HSPI);
 #endif
-class ST7789Spi : public OLEDDisplay {
+class ST7796Spi : public OLEDDisplay {
   private:
       uint8_t             _rst;
       uint8_t             _dc;
@@ -114,7 +114,7 @@ class ST7789Spi : public OLEDDisplay {
 
   public:
     /* pass _cs as -1 to indicate "do not use CS pin", for cases where it is hard wired low */
-    ST7789Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=240,uint16_t height=135,int mosi=-1,int miso=-1,int clk=-1) {
+    ST7789Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=480,uint16_t height=135,int mosi=-1,int miso=-1,int clk=-1) {
       this->_spi = spiClass;
       this->_rst = _rst;
       this->_dc  = _dc;
@@ -308,7 +308,7 @@ class ST7789Spi : public OLEDDisplay {
         WriteData(0x00); 
         WriteData(0x00);         //    XSTART = 0
         WriteData(0x00); 
-        WriteData(240);          //     XEND = 240
+        WriteData(480);          //     XEND = 480
         
         sendCommand(ST77XX_RASET); //   6: Row addr set, 
         WriteData(0x00); 
@@ -334,7 +334,7 @@ class ST7789Spi : public OLEDDisplay {
 
    void setAddrWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h) {
     x += (320-displayWidth)/2;
-    y += (240-displayHeight)/2;
+    y += (480-displayHeight)/2;
     uint32_t xa = ((uint32_t)x << 16) | (x + w - 1);
     uint32_t ya = ((uint32_t)y << 16) | (y + h - 1);
 
