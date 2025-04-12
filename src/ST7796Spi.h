@@ -333,8 +333,8 @@ class ST7796Spi : public OLEDDisplay {
   private:
 
    void setAddrWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h) {
-    x += (320-displayWidth)/2;
-    y += (480-displayHeight)/2;
+    x += (480-displayWidth)/2;
+    y += (320-displayHeight)/2;
     uint32_t xa = ((uint32_t)x << 16) | (x + w - 1);
     uint32_t ya = ((uint32_t)y << 16) | (y + h - 1);
 
