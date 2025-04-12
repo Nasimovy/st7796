@@ -110,7 +110,7 @@ class ST7796Spi : public OLEDDisplay {
       // Memory Data Access Control
       // Meshtastic firmware flips displays by default (legacy of the T-Beam)
       // Our default config here is "flipped" (relative to the bootloader screen), to counter this convention
-      uint8_t _MADCTL=ST77XX_MADCTL_RGB|ST77XX_MADCTL_MV|ST77XX_MADCTL_MY;
+      uint16_t _MADCTL=ST77XX_MADCTL_RGB|ST77XX_MADCTL_MV|ST77XX_MADCTL_MY;
 
   public:
     /* pass _cs as -1 to indicate "do not use CS pin", for cases where it is hard wired low */
@@ -365,7 +365,7 @@ class ST7796Spi : public OLEDDisplay {
       digitalWrite(_dc, HIGH);
     }
     
-    inline void WriteData(uint8_t data) __attribute__((always_inline)){
+    inline void WriteData(uint16_t data) __attribute__((always_inline)){
         digitalWrite(_cs, LOW);
         _spi->beginTransaction(_spiSettings);
         _spi->transfer(data);
@@ -379,7 +379,7 @@ class ST7796Spi : public OLEDDisplay {
       _spi->transfer(l >> 8);
       _spi->transfer(l);
    }
-  void writeCommand(uint8_t cmd) {
+  void writeCommand(uint16_t cmd) {
     digitalWrite(_dc, LOW);
     _spi->transfer(cmd);
     digitalWrite(_dc, HIGH);
