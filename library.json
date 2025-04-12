@@ -1,6 +1,6 @@
 {
   "name": "ESP8266 and ESP32 TFT driver for st7796 displays",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": "st7796, TFT, display, spi",
   "description": "spi display driver for st7796 TFT displays connected to ESP8266, ESP32, Mbed-OS",
   "license": "MIT",
