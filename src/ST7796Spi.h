@@ -114,7 +114,7 @@ class ST7796Spi : public OLEDDisplay {
 
   public:
     /* pass _cs as -1 to indicate "do not use CS pin", for cases where it is hard wired low */
-    ST7796Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=480,uint16_t height=320,int mosi=-1,int miso=-1,int clk=-1) {
+    ST7796Spi(SPIClass *spiClass,uint8_t _rst, uint8_t _dc, uint8_t _cs, OLEDDISPLAY_GEOMETRY g = GEOMETRY_RAWMODE,uint16_t width=480,uint16_t height=320,int mosi=-1,int miso=-1,int clk=-1,uint32_t frequency = 40000000) {
       this->_spi = spiClass;
       this->_rst = _rst;
       this->_dc  = _dc;
@@ -123,7 +123,7 @@ class ST7796Spi : public OLEDDisplay {
       this->_miso=miso;
       this->_clk=clk;
       //this->_ledA  = _ledA;
-      _spiSettings = SPISettings(40000000, MSBFIRST, SPI_MODE0);
+      _spiSettings = SPISettings(frequency, MSBFIRST, SPI_MODE0);
       setGeometry(g,width,height);
       setRGB(ST77XX_GREEN); // Default to Green, if color not explicity specified by Meshtastic firmware
     }
